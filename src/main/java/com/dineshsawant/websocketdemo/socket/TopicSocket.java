@@ -12,12 +12,8 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-/**
- * Created by dnsh on 25/12/17.
- */
 @WebSocket
-public class RandomNameSocket {
-
+public class TopicSocket {
     private static final Gson gson = new Gson();
     private Session session;
     private Set<Session> listenerSessions = new CopyOnWriteArraySet<>();

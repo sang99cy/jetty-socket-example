@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/demo")
 public class DemoController {
+    @GetMapping
+    public String RedirectLogin() {
+        return "redirect:/demo/login";
+    }
 
     @GetMapping("/randomNames")
     public String randomNames() {
