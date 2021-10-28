@@ -15,4 +15,14 @@ public class DemoController {
     public String randomNames() {
         return "/randomNames.html";
     }
+
+    @GetMapping("/login")
+    public String FormLogin() {
+        return "/login.html";
+    }
+
+    @GetMapping("/room")
+    public String Roomchat() {
+        return "/roomchat.html";
+    }
 }
