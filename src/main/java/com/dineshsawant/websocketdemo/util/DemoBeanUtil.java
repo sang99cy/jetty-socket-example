@@ -1,6 +1,6 @@
 package com.dineshsawant.websocketdemo.util;
 
-import com.dineshsawant.websocketdemo.service.RandomNameService;
+//import com.dineshsawant.websocketdemo.service.RandomNameService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,7 +16,7 @@ public class DemoBeanUtil implements ApplicationContextAware {
         appCxt = applicationContext;
     }
 
-    public static RandomNameService getRandomNameService() throws BeansException {
-        return (RandomNameService) appCxt.getAutowireCapableBeanFactory().getBean("randomNameSvc");
-    }
+//    public static RandomNameService getRandomNameService() throws BeansException {
+//        return (RandomNameService) appCxt.getAutowireCapableBeanFactory().getBean("randomNameSvc");
+//    }
 }

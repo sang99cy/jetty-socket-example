@@ -35,12 +35,11 @@ public class TopicSocket {
         session.getPolicy().setIdleTimeout(2000000);
         session.getPolicy().setMaxTextMessageSize(2000000);
         System.out.println(session.getRemoteAddress().getHostString() + " connected!");
-        DemoBeanUtil.getRandomNameService().addSession(session);
     }
 
     @OnWebSocketClose
     public void onClose(Session session, int _closeCode, String _closeReason) {
-        DemoBeanUtil.getRandomNameService().removeSession(session);
+        session.close();
     }
 
     @OnWebSocketMessage
