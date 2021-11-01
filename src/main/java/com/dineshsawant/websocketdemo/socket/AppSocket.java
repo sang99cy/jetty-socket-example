@@ -1,5 +1,6 @@
 package com.dineshsawant.websocketdemo.socket;
 
+import com.dineshsawant.websocketdemo.model.ChatMessage;
 import com.dineshsawant.websocketdemo.util.DemoBeanUtil;
 import com.google.gson.Gson;
 import org.eclipse.jetty.websocket.api.Session;
@@ -44,23 +45,30 @@ public class AppSocket {
 
     @OnWebSocketMessage
     public void onMessage(Session session, String message) throws IOException {
-        Message receivedMessage = deserializeMessage(message);
+        System.out.println("message:" + message);
+        ChatMessage reChatMessage = deserializeMessage(message);
+        //System.out.println("received Chat message: "+reChatMessage);
+
+        /*Message receivedMessage = deserializeMessage(message);
         System.out.println(receivedMessage.op);
         if ("TEST_SOCKET".equals(receivedMessage.op.name())) {
             System.out.println("thuc hien xu ly test socket");
         }
         if ("SAVE_PRODUCT".equals(receivedMessage.op.name())) {
             System.out.println("thuc hien xu li them moi san pham");
-        }
+        }*/
 
     }
 
-
-    protected Message deserializeMessage(String msg) {
-        return gson.fromJson(msg, Message.class);
+    protected ChatMessage deserializeMessage(String msg) {
+        return gson.fromJson(msg, ChatMessage.class);
     }
 
-    public void sendMessage(Message message) {
+//    protected Message deserializeMessage(String msg) {
+//        return gson.fromJson(msg, Message.class);
+//    }
+
+    public void sendMessage(ChatMessage message) {
         try {
             System.out.println("Message send from Client: " + message);
             session.getRemote().sendString(message.toString());

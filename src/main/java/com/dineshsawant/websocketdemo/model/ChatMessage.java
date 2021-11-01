@@ -1,5 +1,6 @@
 package com.dineshsawant.websocketdemo.model;
 
+import com.dineshsawant.websocketdemo.socket.Message;
 import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +39,7 @@ public class ChatMessage {
         return GSON.toJson(this);
     }
 
-    public static com.dineshsawant.websocketdemo.socket.Message fromJson(String json) {
-        return GSON.fromJson(json, com.dineshsawant.websocketdemo.socket.Message.class);
+    public static ChatMessage fromJson(String json) {
+        return GSON.fromJson(json, ChatMessage.class);
     }
 }
