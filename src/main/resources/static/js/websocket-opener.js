@@ -22,7 +22,7 @@ ws.onopen = function () {
 }
 
 ws.onmessage = function (event) {
-    console.debug("WebSocket message received:", event);
+    console.log("WebSocket message received:", event.data);
 };
 
 /*ws.onclose = function () {
@@ -102,7 +102,7 @@ function onMessageReceived(payload) {
         var avatarElement = document.createElement('i');
         var avatarText = document.createTextNode(message.sender[0]);
         avatarElement.appendChild(avatarText);
-        //avatarElement.style['background-color'] = getAvatarColor(message.sender);
+        avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
         messageElement.appendChild(avatarElement);
 
