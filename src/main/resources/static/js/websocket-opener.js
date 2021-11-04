@@ -23,7 +23,7 @@ ws.onopen = function () {
 
 ws.onmessage = function (event) {
     console.log("WebSocket message received:", event.data);
-    sendMessage(event);
+    onMessageReceived(event.data)
 };
 
 /*ws.onclose = function () {
@@ -83,14 +83,12 @@ function sendMessage(event) {
     }
     event.preventDefault();
     console.log("sssss:",chatMessage);
-    onMessageReceived(chatMessage);
 }
 
 function onMessageReceived(payload) {
-    var message = JSON.parse(JSON.stringify(payload));
 
+    var message = JSON.parse(payload);
     var messageElement = document.createElement('li');
-
     if (message.type === 'JOIN') {//JOIN
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
@@ -103,8 +101,7 @@ function onMessageReceived(payload) {
         var avatarElement = document.createElement('i');
         var avatarText = document.createTextNode(message.sender[0]);
         avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
+        // avatarElement.style['background-color'] = getAvatarColor(message.sender);
         messageElement.appendChild(avatarElement);
 
         var usernameElement = document.createElement('span');
