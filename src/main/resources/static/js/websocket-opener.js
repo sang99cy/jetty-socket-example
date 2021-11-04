@@ -23,6 +23,7 @@ ws.onopen = function () {
 
 ws.onmessage = function (event) {
     console.log("WebSocket message received:", event.data);
+    sendMessage(event);
 };
 
 /*ws.onclose = function () {
