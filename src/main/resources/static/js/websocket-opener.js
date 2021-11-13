@@ -9,7 +9,7 @@ var connectingElement = document.querySelector('.connecting');
 
 
 /*connect socket server from socket client*/
-var ws = new WebSocket("ws://" + location.host + "/ws/app");
+var ws = new WebSocket("ws://localhost:8888/ws");
 
 
 ws.onopen = function () {
@@ -70,7 +70,7 @@ function onConnected() {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    console.log("input:", messageContent);
+    //console.log("input:", messageContent);
     if (messageContent) {
         var chatMessage = {
             sender: username,

@@ -13,10 +13,10 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @WebSocket
 public class AppSocket {
     private static final Gson gson = new Gson();
+    private final String UPLOAD_CONFIG = "application.properties";
+    private Properties properties = new Properties();
     private Session session;
     private Set<Session> listenerSessions = new CopyOnWriteArraySet<>();
-    public static Map<Session, Session> hasMapSessionServerClient = new HashMap<>();
-    public static Map<Session, Session> hasMapSessionClientServer = new HashMap<>();
     public static List<Session> listSessionConnect = new ArrayList<>();
 
     public static Session sessionClientConnect;
@@ -62,16 +62,16 @@ public class AppSocket {
     public void onMessage(Session session, String message) throws IOException {
         System.out.println("message:" + message);
         ChatMessage reChatMessage = deserializeMessage(message);
-        //System.out.println("received Chat message: "+reChatMessage);
+        System.out.println("received Chat message: "+reChatMessage);
 
-        /*Message receivedMessage = deserializeMessage(message);
-        System.out.println(receivedMessage.op);
-        if ("TEST_SOCKET".equals(receivedMessage.op.name())) {
-            System.out.println("thuc hien xu ly test socket");
-        }
-        if ("SAVE_PRODUCT".equals(receivedMessage.op.name())) {
-            System.out.println("thuc hien xu li them moi san pham");
-        }*/
+//        ChatMessage receivedMessage = deserializeMessage(message);
+//        System.out.println(receivedMessage.op);
+//        if ("TEST_SOCKET".equals(receivedMessage.op.name())) {
+//            System.out.println("thuc hien xu ly test socket");
+//        }
+//        if ("SAVE_PRODUCT".equals(receivedMessage.op.name())) {
+//            System.out.println("thuc hien xu li them moi san pham");
+//        }
         for (Session item : listSessionConnect) {
             this.sendMessage1(item, message);
         }
