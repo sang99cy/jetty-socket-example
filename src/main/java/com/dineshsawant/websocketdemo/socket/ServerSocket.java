@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.TimeoutException;
 
 
 @Component
@@ -19,13 +20,14 @@ public class ServerSocket {
 
     private final String UPLOAD_CONFIG = "application.properties";
     private Properties properties = new Properties();
+    public static final Server jettyServer = null;
 
     @PostConstruct
     private void postConstruct() throws Exception {
         properties.load(getClass().getClassLoader().getResourceAsStream(UPLOAD_CONFIG));
         String port = properties.getProperty("portSocketServer");
         Server server = new Server(Integer.parseInt(port));
-        WebSocketHandler wsHandler = new WebSocketHandler () {
+        WebSocketHandler wsHandler = new WebSocketHandler() {
             @Override
             public void configure(WebSocketServletFactory factory) {
                 factory.register(AppSocket.class);

@@ -3,14 +3,21 @@ package com.dineshsawant.websocketdemo.socket;
 import com.dineshsawant.websocketdemo.model.ChatMessage;
 import com.dineshsawant.websocketdemo.util.DemoBeanUtil;
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.websocket.api.CloseException;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.*;
+import org.eclipse.jetty.websocket.server.WebSocketHandler;
+import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.TimeoutException;
 
 @WebSocket
+@Slf4j
 public class AppSocket {
     private static final Gson gson = new Gson();
     private final String UPLOAD_CONFIG = "application.properties";
@@ -53,9 +60,12 @@ public class AppSocket {
 
 
     @OnWebSocketError
-    public void onError(Throwable error) {
+    public void onError(Throwable error) throws Exception {
         error.printStackTrace();
         System.out.println(error);
+        if (error instanceof CloseException){
+            restartServer();
+        }
     }
 
     @OnWebSocketMessage
@@ -103,5 +113,12 @@ public class AppSocket {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public void restartServer() throws Exception {
+
+        server.start();
+        server.setStopTimeout(0);
+        log.debug("server socket started!");
     }
 }
