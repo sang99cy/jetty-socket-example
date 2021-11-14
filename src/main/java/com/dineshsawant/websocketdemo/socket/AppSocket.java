@@ -115,10 +115,10 @@ public class AppSocket {
         }
     }
 
-    public void restartServer() throws Exception {
-
-        server.start();
-        server.setStopTimeout(0);
-        log.debug("server socket started!");
-    }
+//    public void restartServer() throws Exception {
+//
+//        server.start();
+//        server.setStopTimeout(0);
+//        log.debug("server socket started!");
+//    }
 }
