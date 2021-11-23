@@ -36,7 +36,7 @@ public class ServerSocket {
         server.setHandler(wsHandler);
         server.start();
         server.setStopTimeout(0);
-        log.debug("server socket started!");
+		/* log.debug("server socket started!"); */
     }
 
 }

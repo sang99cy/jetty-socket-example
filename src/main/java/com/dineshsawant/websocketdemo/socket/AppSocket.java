@@ -63,9 +63,6 @@ public class AppSocket {
     public void onError(Throwable error) throws Exception {
         error.printStackTrace();
         System.out.println(error);
-        if (error instanceof CloseException){
-            restartServer();
-        }
     }
 
     @OnWebSocketMessage
@@ -114,11 +111,4 @@ public class AppSocket {
             e.printStackTrace();
         }
     }
-
-//    public void restartServer() throws Exception {
-//
-//        server.start();
-//        server.setStopTimeout(0);
-//        log.debug("server socket started!");
-//    }
 }
